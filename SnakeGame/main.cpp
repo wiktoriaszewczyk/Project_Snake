@@ -1,7 +1,8 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include <vector>
+#include <SFML/Graphics.hpp>
 #include "include/define.h"
+#include "include/Game.h"
 
 int main()
 {
@@ -11,7 +12,10 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT), "Snake");
     window.setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
-    
+    Game game;
+
+
+    /*
     // Snake movement  //////////////////////////////////////////////////////////////////
     sf::Clock clock; // starts the clock   
 
@@ -20,28 +24,16 @@ int main()
     direction = sf::Keyboard::Key::Right;
     float snakeHeadPositionX = START_POSITION_X, snakeHeadPositionY = START_POSITION_Y;
 
-    // Background 
-    sf::Texture backgroundTexture;
-    if(!backgroundTexture.loadFromFile("img/background.png"))
-        return 1;
-    sf::Sprite backgroundSprite(backgroundTexture);
-    backgroundSprite.setPosition(0, 0);
-
     // snake test
     sf::Texture snakeTest;
     snakeTest.loadFromFile("img/pink_snake_tongue_pixel.png");
     sf::Sprite snakeTestSprite(snakeTest);
     snakeTestSprite.setPosition(snakeHeadPositionX, snakeHeadPositionY);
 
-    // apple test
-    sf::Texture appleTest;
-    appleTest.loadFromFile("img/apple.png");
-    sf::Sprite appleTestSprite(appleTest);
-    appleTestSprite.setPosition(10 * BLOCK_SIZE, 4 * BLOCK_SIZE);
-
+    */
+    
     window.setFramerateLimit(60);
 
-    
     while (window.isOpen())
     {
         sf::Event event;
@@ -51,24 +43,26 @@ int main()
                 window.close();
         }
         
+        
         // Keyboard handler ////////////////////////////////////////////////////
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction != sf::Keyboard::Right)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && game.getDirection() != sf::Keyboard::Right)
         {
-            direction = sf::Keyboard::Left;
+            game.setDirection(sf::Keyboard::Left);
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != sf::Keyboard::Left)
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && game.getDirection() != sf::Keyboard::Left)
         {
-            direction = sf::Keyboard::Right;
+            game.setDirection(sf::Keyboard::Right);
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != sf::Keyboard::Down)
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && game.getDirection() != sf::Keyboard::Down)
         {
-            direction = sf::Keyboard::Up;
+            game.setDirection(sf::Keyboard::Up);
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != sf::Keyboard::Up)
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && game.getDirection() != sf::Keyboard::Up)
         {
-            direction = sf::Keyboard::Down;
+            game.setDirection(sf::Keyboard::Down);
         }
 
+        /*
         // Time handler ////////////////////////////////////////////
         float elapsedTime = clock.getElapsedTime().asMilliseconds();
         clock.restart();
@@ -93,12 +87,11 @@ int main()
         std::cout<<elapsedTime <<std::endl;
         
         snakeTestSprite.setPosition(snakeHeadPositionX, snakeHeadPositionY);
+        */
 
         window.clear();
 
-        window.draw(backgroundSprite);
-        window.draw(snakeTestSprite);
-        window.draw(appleTestSprite);
+        game.draw(window);
         
         window.display();
         

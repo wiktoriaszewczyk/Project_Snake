@@ -33,17 +33,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="img\background_light.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\background_light10.png">
-      <Filter>Images</Filter>
-    </Image>
-    <Image Include="img\pink_snake_tongue_pixel.png">
-      <Filter>Images</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\define.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,5 +45,19 @@
     <ClInclude Include="include\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="img\apple.png">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="img\background.png">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="img\pink_snake_tongue_pixel.png">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="img\snake.png">
+      <Filter>Images</Filter>
+    </Image>
   </ItemGroup>
 </Project>
