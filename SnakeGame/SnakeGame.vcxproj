@@ -134,6 +134,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Cell.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Snake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\background_light.png" />
@@ -141,7 +144,10 @@
     <Image Include="img\pink_snake_tongue_pixel.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Cell.h" />
     <ClInclude Include="include\define.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\Snake.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

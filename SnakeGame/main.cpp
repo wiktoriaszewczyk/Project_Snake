@@ -11,6 +11,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT), "Snake");
     window.setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
+    
     // Snake movement  //////////////////////////////////////////////////////////////////
     sf::Clock clock; // starts the clock   
 
@@ -39,6 +40,8 @@ int main()
     appleTestSprite.setPosition(10 * BLOCK_SIZE, 4 * BLOCK_SIZE);
 
     window.setFramerateLimit(60);
+
+    
     while (window.isOpen())
     {
         sf::Event event;
@@ -47,7 +50,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
+        
         // Keyboard handler ////////////////////////////////////////////////////
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction != sf::Keyboard::Right)
         {
@@ -98,6 +101,7 @@ int main()
         window.draw(appleTestSprite);
         
         window.display();
+        
     }
 
     return 0;
