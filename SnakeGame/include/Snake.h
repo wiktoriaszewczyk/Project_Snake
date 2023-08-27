@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <deque>
 #include <SFML/Graphics.hpp>
 #include "Cell.h"
 
@@ -17,6 +17,6 @@ public:
 	void move(sf::Keyboard::Key direction);
 
 private:
-	std::vector<Cell*> _body;
+	std::deque<Cell*> _body;
 	sf::Texture _snakeTexture;
 };

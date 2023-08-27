@@ -12,7 +12,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT), "Snake");
     window.setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 
-    Game game;
+    Game game(window);
 
 
     /*
@@ -32,10 +32,12 @@ int main()
 
     */
     
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(10);
 
     while (window.isOpen())
     {
+        window.clear();
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -43,58 +45,40 @@ int main()
                 window.close();
         }
         
-        
-        // Keyboard handler ////////////////////////////////////////////////////
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && game.getDirection() != sf::Keyboard::Right)
-        {
-            game.setDirection(sf::Keyboard::Left);
+        if (game.isGameOver()) {
+            game.drawStartScreen();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+                game.startGame();
+                game.setDirection(sf::Keyboard::Right);
+            }
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && game.getDirection() != sf::Keyboard::Left)
-        {
-            game.setDirection(sf::Keyboard::Right);
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && game.getDirection() != sf::Keyboard::Down)
-        {
-            game.setDirection(sf::Keyboard::Up);
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && game.getDirection() != sf::Keyboard::Up)
-        {
-            game.setDirection(sf::Keyboard::Down);
+        else {
+            // Keyboard handler ////////////////////////////////////////////////////
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && game.getDirection() != sf::Keyboard::Right)
+            {
+                game.setDirection(sf::Keyboard::Left);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && game.getDirection() != sf::Keyboard::Left)
+            {
+                game.setDirection(sf::Keyboard::Right);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && game.getDirection() != sf::Keyboard::Down)
+            {
+                game.setDirection(sf::Keyboard::Up);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && game.getDirection() != sf::Keyboard::Up)
+            {
+                game.setDirection(sf::Keyboard::Down);
+            }
+            else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                window.close();
+            }
+
+            game.update();
+            game.drawGame();
         }
 
-        /*
-        // Time handler ////////////////////////////////////////////
-        float elapsedTime = clock.getElapsedTime().asMilliseconds();
-        clock.restart();
-
-        if (direction == sf::Keyboard::Left)
-        {
-            snakeHeadPositionX -= speed * elapsedTime;
-        }
-        else if (direction == sf::Keyboard::Right)
-        {
-            snakeHeadPositionX += speed * elapsedTime;
-        }
-        else if (direction == sf::Keyboard::Up)
-        {
-            snakeHeadPositionY -= speed * elapsedTime;
-        }
-        else if (direction == sf::Keyboard::Down)
-        {
-            snakeHeadPositionY += speed * elapsedTime;
-        }
-
-        std::cout<<elapsedTime <<std::endl;
-        
-        snakeTestSprite.setPosition(snakeHeadPositionX, snakeHeadPositionY);
-        */
-
-        window.clear();
-
-        game.draw(window);
-        
         window.display();
-        
     }
 
     return 0;

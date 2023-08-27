@@ -59,5 +59,13 @@
     <Image Include="img\snake.png">
       <Filter>Images</Filter>
     </Image>
+    <Image Include="img\backgroundGameOver.png">
+      <Filter>Images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="img\Minecraft.ttf">
+      <Filter>Images</Filter>
+    </Font>
   </ItemGroup>
 </Project>

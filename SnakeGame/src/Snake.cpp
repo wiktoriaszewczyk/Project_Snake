@@ -58,4 +58,31 @@ unsigned Snake::size()
 
 void Snake::move(sf::Keyboard::Key direction)
 {
+	float x = 0, y = 0;
+	if (direction == sf::Keyboard::Left)
+	{
+		x = -BLOCK_SIZE;
+		y = 0;
+	}
+	else if (direction == sf::Keyboard::Right)
+	{
+		x = BLOCK_SIZE;
+		y = 0;
+	}
+	else if (direction == sf::Keyboard::Up)
+	{
+		x = 0;
+		y = -BLOCK_SIZE;
+	}
+	else if (direction == sf::Keyboard::Down)
+	{
+		x = 0;
+		y = BLOCK_SIZE;
+	}
+
+	Cell* tmp = nullptr;
+	tmp = _body[0];
+	_body.pop_front();
+	tmp->setPosition(_body[size() - 1]->getPositionX() + x, _body[size() - 1]->getPositionY() + y);
+	_body.push_back(tmp);
 }

@@ -147,8 +147,12 @@
   <ItemGroup>
     <Image Include="img\apple.png" />
     <Image Include="img\background.png" />
+    <Image Include="img\backgroundGameOver.png" />
     <Image Include="img\pink_snake_tongue_pixel.png" />
     <Image Include="img\snake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="img\Minecraft.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
